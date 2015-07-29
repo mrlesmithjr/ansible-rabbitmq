@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Larry Smith Jr.
-  description: Installs rabbitmq
+  description: Installs rabbitmq (can be HA and clustered)
   #company: your company (optional)
   # Some suggested licenses:
   # - BSD (default)
@@ -119,7 +119,7 @@ galaxy_info:
   #- cloud:ec2
   #- cloud:gce
   #- cloud:rax
-  #- clustering
+  - clustering
   #- database
   #- database:nosql
   #- database:sql
