@@ -1,0 +1,4 @@
+---
+# defaults file for ansible-rabbitmq
+enable_rabbitmq_clustering: false  #defines if setting up a rabbitmq cluster
+config_rabbitmq_ha: false  #defines if rabbitmq ha should be configured
