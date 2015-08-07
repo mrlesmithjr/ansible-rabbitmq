@@ -37,7 +37,7 @@
   when: inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | joining rabbitmq cluster
-  command: rabbitmqctl join_cluster 'rabbit@{{ master_rabbit_node }}'
+  command: rabbitmqctl join_cluster 'rabbit@{{ rabbitmq_master }}'
   when: inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | starting rabbitmq app
