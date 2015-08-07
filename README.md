@@ -10,15 +10,11 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 
 Role Variables
 --------------
-define in one host_vars/host config to designate the master_rabbit_node
-````
-master_rabbit_node: true
-````
 
 ````
-enable_rabbitmq_clustering: false  #defines if setting up a rabbitmq cluster...define here or in group_vars/group
 config_rabbitmq_ha: false  #defines if rabbitmq ha should be configured...define here or in group_vars/group
-master_rabbit_node: false  #defines if node should be considered master...define as true in one host in host_vars/host out of all nodes to be part of cluster
+enable_rabbitmq_clustering: false  #defines if setting up a rabbitmq cluster...define here or in group_vars/group
+erlang_cookie: LSKNKBELKPSTDBBCHETL  #define erlang cookie for cluster...define here or in group_vars/group
 rabbitmq_config:
   - queue_name: logstash
     durable: true
@@ -26,6 +22,16 @@ rabbitmq_config:
     type: fanout
     routing_key: logstash
     tags: 'ha-mode=all,ha-sync-mode=automatic'
+rabbitmq_master: []  #defines the inventory host that should be considered master...define here or in group_vars/group
+````
+
+example...
+group_vars/rabbitmq-cluster-nodes
+````
+---
+enable_rabbitmq_clustering: true
+config_rabbitmq_ha: false
+rabbitmq_master: ans-test-1
 ````
 
 Dependencies
