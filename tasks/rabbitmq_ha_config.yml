@@ -10,7 +10,7 @@
   notify: restart rabbitmq-server
 
 - name: rabbitmq_ha_config | creating queue(s)
-  command: rabbitmqadmin declare queue name={{ item.queue_name }} durable={{ item.durable }}
+  command: rabbitmqadmin declare queue name={{ item.queue_name }} durable={{ item.durable|lower }}
   run_once: true
   with_items: rabbitmq_config
 
