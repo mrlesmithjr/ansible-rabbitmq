@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Larry Smith Jr.
-  description: Installs rabbitmq (can be HA and clustered)
+  description: Installs rabbitmq https://www.rabbitmq.com/ (Configurable...HA and Clustering ready)
   #company: your company (optional)
   # Some suggested licenses:
   # - BSD (default)

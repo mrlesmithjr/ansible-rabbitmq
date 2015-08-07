@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Installs rabbitmq https://www.rabbitmq.com/
+Installs rabbitmq https://www.rabbitmq.com/ (Configurable...HA and Clustering ready)
 
 Requirements
 ------------
