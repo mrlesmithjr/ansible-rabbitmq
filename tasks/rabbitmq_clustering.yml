@@ -38,6 +38,7 @@
 
 - name: rabbitmq_clustering | joining rabbitmq cluster
   command: rabbitmqctl join_cluster 'rabbit@{{ rabbitmq_master }}'
+  register: cluster_joined
   when: inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | starting rabbitmq app
@@ -46,4 +47,4 @@
 
 - name: rabbitmq_clustering | marking as clustered
   file: path=/etc/rabbitmq/clustered state=touch
-  when: cluster_master.changed
+  when: cluster_master.changed or cluster_joined.changed
