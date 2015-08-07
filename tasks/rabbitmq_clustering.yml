@@ -1,40 +1,42 @@
 ---
-- name: rabbitmq_clustering | config | stopping rabbitmq app
+- name: rabbitmq_clustering | stopping rabbitmq app
   command: rabbitmqctl stop_app
 
-- name: rabbitmq_clustering | config | resetting rabbitmq app
+- name: rabbitmq_clustering | resetting rabbitmq app
   command: rabbitmqctl reset
 
-- name: rabbitmq_clustering | config | copy erlang cookie
+- name: rabbitmq_clustering | copy erlang cookie
   template: src=erlang.cookie.j2 dest=/var/lib/rabbitmq/.erlang.cookie owner=rabbitmq group=rabbitmq mode=0400 backup=yes
 
-- name: rabbitmq_clustering | config | starting rabbitmq app
+- name: rabbitmq_clustering | starting rabbitmq app
   command: rabbitmqctl start_app
-  when: inventory_hostname  == "{{ master_rabbit_node }}"
+  register: cluster_master
+  when: master_rabbit_node is defined and master_rabbit_node
 
-- name: rabbitmq_clustering | config | sending sigterm to any running rabbitmq processes
+- name: rabbitmq_clustering | sending sigterm to any running rabbitmq processes
   shell: pkill -u rabbitmq || true
-  when: inventory_hostname != "{{ master_rabbit_node }}"
+  when: (master_rabbit_node is defined and not master_rabbit_node) and cluster_master.changed
 
-- name: rabbitmq_clustering | config | restarting rabbitmq-server
+- name: rabbitmq_clustering | restarting rabbitmq-server
   service: name=rabbitmq-server state=restarted
-  when: inventory_hostname != "{{ master_rabbit_node }}"
+  when: (master_rabbit_node is defined and not master_rabbit_node) and cluster_master.changed
 
-- name: rabbitmq_clustering | config | stopping rabbitmq app
+- name: rabbitmq_clustering | stopping rabbitmq app
   command: rabbitmqctl stop_app
-  when: inventory_hostname != "{{ master_rabbit_node }}"
+  when: (master_rabbit_node is defined and not master_rabbit_node) and cluster_master.changed
 
-- name: rabbitmq_clustering | config | resetting rabbitmq app
+- name: rabbitmq_clustering | resetting rabbitmq app
   command: rabbitmqctl reset
-  when: inventory_hostname != "{{ master_rabbit_node }}"
+  when: (master_rabbit_node is defined and not master_rabbit_node) and cluster_master.changed
 
-- name: rabbitmq_clustering | config | joining rabbitmq cluster
+- name: rabbitmq_clustering | joining rabbitmq cluster
   command: rabbitmqctl join_cluster 'rabbit@{{ master_rabbit_node }}'
-  when: inventory_hostname != "{{ master_rabbit_node }}"
+  when: (master_rabbit_node is defined and not master_rabbit_node) and cluster_master.changed
 
-- name: rabbitmq_clustering | config | starting rabbitmq app
+- name: rabbitmq_clustering | starting rabbitmq app
   command: rabbitmqctl start_app
-  when: inventory_hostname != "{{ master_rabbit_node }}"
+  when: (master_rabbit_node is defined and not master_rabbit_node) and cluster_master.changed
 
-- name: rabbitmq_clustering | config | marking as clustered
+- name: rabbitmq_clustering | marking as clustered
   file: path=/etc/rabbitmq/clustered state=touch
+  when: cluster_master.changed
