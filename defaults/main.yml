@@ -1,7 +1,8 @@
 ---
 # defaults file for ansible-rabbitmq
-enable_rabbitmq_clustering: false  #defines if setting up a rabbitmq cluster...define here or in group_vars/group
 config_rabbitmq_ha: false  #defines if rabbitmq ha should be configured...define here or in group_vars/group
+enable_rabbitmq_clustering: false  #defines if setting up a rabbitmq cluster...define here or in group_vars/group
+erlang_cookie: LSKNKBELKPSTDBBCHETL  #define erlang cookie for cluster...define here or in group_vars/group
 master_rabbit_node: false  #defines if node should be considered master...define as true in one host in host_vars/host out of all nodes to be part of cluster
 rabbitmq_config:
   - queue_name: logstash
