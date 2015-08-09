@@ -2,7 +2,8 @@
 # defaults file for ansible-rabbitmq
 config_rabbitmq_ha: false  #defines if rabbitmq ha should be configured...define here or in group_vars/group
 enable_rabbitmq_clustering: false  #defines if setting up a rabbitmq cluster...define here or in group_vars/group
-erlang_cookie: LSKNKBELKPSTDBBCHETL  #define erlang cookie for cluster...define here or in group_vars/group
+#erlang_cookie:  #define erlang cookie for cluster...define here or in group_vars/group
+erlang_cookie_file: /var/lib/rabbitmq/.erlang.cookie
 rabbitmq_config:
   - queue_name: logstash
     durable: true
