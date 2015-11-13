@@ -11,4 +11,14 @@ rabbitmq_config:
     type: direct
     routing_key: logstash
     tags: 'ha-mode=all,ha-sync-mode=automatic'
+rabbitmq_debian_repo: deb http://www.rabbitmq.com/debian/ testing main
+rabbitmq_debian_repo_key: http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 rabbitmq_master: []  #defines the inventory host that should be considered master...define here or in group_vars/group
+rabbitmq_users:  #define admin user to create in order to login to WebUI
+  - name: rabbitmqadmin
+    password: rabbitmqadmin
+    vhost: /
+    configure_priv: '.*'
+    read_priv: '.*'
+    write_priv: '.*'
+    tags: 'administrator'  #define comma separated list of tags to assign to user....management,policymaker,monitoring,administrator...required for management plugin. https://www.rabbitmq.com/management.html

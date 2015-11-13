@@ -6,7 +6,9 @@
   command: rabbitmqctl reset
 
 - name: rabbitmq_clustering | stopping rabbitmq-server
-  service: name=rabbitmq-server state=stopped
+  service:
+    name: rabbitmq-server
+    state: stopped
 
 #- name: grabbing erlang cookie
 #  shell: cat /var/lib/rabbitmq/.erlang.cookie
@@ -14,11 +16,19 @@
 #  when: inventory_hostname == "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | copy erlang cookie
-  template: src=erlang.cookie.j2 dest={{ erlang_cookie_file }} owner=rabbitmq group=rabbitmq mode=0400 backup=yes
+  template:
+    src: erlang.cookie.j2
+    dest: "{{ erlang_cookie_file }}"
+    owner: rabbitmq
+    group: rabbitmq
+    mode: 0400
+    backup: yes #backing up in case the need to recover
 #  when: inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | restarting rabbitmq-server on master
-  service: name=rabbitmq-server state=restarted
+  service:
+    name: rabbitmq-server
+    state: restarted
   when: inventory_hostname == "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | starting rabbitmq app on master
@@ -31,7 +41,9 @@
   when: inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | restarting rabbitmq-server
-  service: name=rabbitmq-server state=restarted
+  service:
+    name: rabbitmq-server
+    state: restarted
   when: inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | stopping rabbitmq app
@@ -52,5 +64,7 @@
   when: inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | marking as clustered
-  file: path=/etc/rabbitmq/clustered state=touch
+  file:
+    path: /etc/rabbitmq/clustered
+    state: touch
   when: cluster_master.changed or cluster_joined.changed

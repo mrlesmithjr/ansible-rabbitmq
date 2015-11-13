@@ -11,3 +11,5 @@
 
 - include: rabbitmq_ha_config.yml
   when: config_rabbitmq_ha and enable_rabbitmq_clustering
+
+- include: rabbitmq_users.yml
