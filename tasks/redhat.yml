@@ -1,5 +1,5 @@
 ---
-- name: redhat | installing pre-reqs
+- name: redhat | installing pre-reqs (yum)
   yum:
     name: "{{ item }}"
     state: present
@@ -9,6 +9,13 @@
     - python-dnf
   when: >
         ansible_distribution != "Fedora"
+
+- name: redhat | installing pre-reqs (dnf)
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - wget
 
 - name: redhat | installing erlang
   dnf:
