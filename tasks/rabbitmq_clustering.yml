@@ -55,7 +55,8 @@
   when: inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: rabbitmq_clustering | joining rabbitmq cluster
-  command: rabbitmqctl join_cluster 'rabbit@{{ rabbitmq_master }}'
+#  command: rabbitmqctl join_cluster 'rabbit@{{ rabbitmq_master }}'
+  command: rabbitmqctl join_cluster 'rabbit@{{ hostvars[rabbitmq_master].inventory_hostname_short }}'
   register: cluster_joined
   when: inventory_hostname != "{{ rabbitmq_master }}"
 

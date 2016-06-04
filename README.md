@@ -36,7 +36,7 @@ enable_rabbitmq_clustering: false  #defines if setting up a rabbitmq cluster...d
 erlang_cookie: 'LSKNKBELKPSTDBBCHETL'  #define erlang cookie for cluster...define here or in group_vars/group
 erlang_cookie_file: '/var/lib/rabbitmq/.erlang.cookie'
 rabbitmq_config:
-  - queue_name: logstash
+  - name: logstash
     durable: true
     exchange_name: logstash
     type: direct
