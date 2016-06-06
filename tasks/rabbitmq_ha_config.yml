@@ -20,12 +20,12 @@
 - name: rabbitmq_ha_config | creating queue(s)
   command: rabbitmqadmin declare queue name={{ item.name }} durable={{ item.durable|lower }}
   run_once: true
-#  with_items: rabbitmq_config
-  with_subelements:
-  - rabbitmq_config
-  - queues
-  - flags:
-    skip_missing: True
+  with_items: rabbitmq_queues
+#  with_subelements:
+#  - rabbitmq_config
+#  - queues
+#  - flags:
+#    skip_missing: True
 
 - name: rabbitmq_ha_config | setting up ha on queue(s)
   rabbitmq_policy:
@@ -34,32 +34,31 @@
     tags: "{{ item.tags }}"
     state: present
   run_once: true
-#  with_items: rabbitmq_config
-  with_subelements:
-  - rabbitmq_config
-  - queues
-  - flags:
-    skip_missing: True
+  with_items: rabbitmq_queues
+#  with_subelements:
+#  - rabbitmq_config
+#  - queues
+#  - flags:
+#    skip_missing: True
 
 - name: rabbitmq_ha_config | creating exchange(s)
   command: rabbitmqadmin declare exchange name={{ item.exchange_name }} type={{ item.type }}
   run_once: true
-#  with_items: rabbitmq_config
-  with_subelements:
-  - rabbitmq_config
-  - queues
-  - flags:
-    skip_missing: True
+  with_items: rabbitmq_queues
+#  with_subelements:
+#  - rabbitmq_config
+#  - queues
+#  - flags:
+#    skip_missing: True
   when: item.exchange_name is defined
 
 - name: rabbitmq_ha_config | creating binding(s)
   command: rabbitmqadmin declare binding source={{ item.exchange_name }} destination_type="queue" destination={{ item.name }} routing_key={{ item.routing_key }}
   run_once: true
-#  with_items: rabbitmq_config
-  with_subelements:
-  - rabbitmq_config
-  - queues
-  - flags:
-    skip_missing: True
-
+  with_items: rabbitmq_queues
+#  with_subelements:
+#  - rabbitmq_config
+#  - queues
+#  - flags:
+#    skip_missing: True
   when: item.exchange_name is defined
