@@ -21,6 +21,7 @@
   command: rabbitmqadmin declare queue name={{ item.name }} durable={{ item.durable|lower }}
   run_once: true
   with_items: rabbitmq_queues
+  when: "rabbitmq_queues|length > 0"
 #  with_subelements:
 #  - rabbitmq_config
 #  - queues
@@ -35,6 +36,7 @@
     state: present
   run_once: true
   with_items: rabbitmq_queues
+  when: "rabbitmq_queues|length > 0"
 #  with_subelements:
 #  - rabbitmq_config
 #  - queues
@@ -50,7 +52,7 @@
 #  - queues
 #  - flags:
 #    skip_missing: True
-  when: item.exchange_name is defined
+  when: "rabbitmq_queues|length > 0 and item.exchange_name is defined"
 
 - name: rabbitmq_ha_config | creating binding(s)
   command: rabbitmqadmin declare binding source={{ item.exchange_name }} destination_type="queue" destination={{ item.name }} routing_key={{ item.routing_key }}
@@ -61,4 +63,4 @@
 #  - queues
 #  - flags:
 #    skip_missing: True
-  when: item.exchange_name is defined
+  when: "rabbitmq_queues|length > 0 and item.exchange_name is defined"
