@@ -1,19 +1,28 @@
 # tasks file for ansible-rabbitmq
 - include: debian.yml
   when: ansible_os_family == "Debian"
+  tags: [rabbitmq]
 
 - include: redhat.yml
   when: ansible_os_family == "RedHat"
+  tags: [rabbitmq]
   
 - name: checking to see if already clustered
   stat: path=/etc/rabbitmq/clustered
   register: clustered
+  tags: [rabbitmq, clustering]
 
 - include: rabbitmq_clustering.yml
   when: enable_rabbitmq_clustering and (clustered.stat.exists != True)
+  tags: [rabbitmq, clustering]
 
 - include: rabbitmq_ha_config.yml
   when: config_rabbitmq_ha and enable_rabbitmq_clustering
+  tags: [rabbitmq, ha_config]
 
+- include: rabbitmq_queues.yml
+  tags: [rabbitmq, queues]
 - include: rabbitmq_vhosts.yml
+  tags: [rabbitmq, vhosts]
 - include: rabbitmq_users.yml
+  tags: [rabbitmq, users]

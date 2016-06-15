@@ -1,22 +1,16 @@
 ---
-- name: Create rabbitmq vhosts | non-clustered version
+- name: rabbitmq vhosts | creating vHosts in non-clustered version
   rabbitmq_vhost: name={{ item.name }} state=present
   with_items: rabbitmq_vhosts
-#  with_subelements:
-#  - rabbitmq_config
-#  - vhosts
   when: "rabbitmq_vhosts|length > 0 and ((enable_rabbitmq_clustering is defined and not enable_rabbitmq_clustering) or enable_rabbitmq_clustering is not defined)"
 
-- name: Create rabbitmq vhosts | clustered version
+- name: rabbitmq vhosts | creating vHosts in clustered version
   rabbitmq_vhost: name={{ item.name }} state=present
   with_items: rabbitmq_vhosts
-#  with_subelements:
-#  - rabbitmq_config
-#  - vhosts
   run_once: yes
   when: "rabbitmq_vhosts|length > 0 and (enable_rabbitmq_clustering is defined and enable_rabbitmq_clustering)"
 
-- name: Create rabbitmq vhosts | setting up ha on vhost(s)
+- name: rabbitmq vhosts | setting up ha on vhost(s)
   rabbitmq_policy:
     name: "ha-all"
     pattern: ""
@@ -26,6 +20,3 @@
   run_once: true
   with_items: rabbitmq_vhosts
   when: "rabbitmq_vhosts|length > 0"
-#  with_subelements:
-#  - rabbitmq_config
-#  - vhosts
