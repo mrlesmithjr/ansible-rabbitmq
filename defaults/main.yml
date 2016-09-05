@@ -21,3 +21,7 @@ rabbitmq_users:  #define admin user to create in order to login to WebUI
     read_priv: '.*'
     write_priv: '.*'
     tags: 'administrator'  #define comma separated list of tags to assign to user....management,policymaker,monitoring,administrator...required for management plugin. https://www.rabbitmq.com/management.html
+
+# Service adjustments
+rabbitmq_debian_init_script_defaults_file: '/etc/default/rabbitmq-server'
+rabbitmq_ulimit_n: 1024

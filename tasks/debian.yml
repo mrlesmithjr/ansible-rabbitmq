@@ -16,6 +16,16 @@
   with_items:
     - rabbitmq-server
 
+- name: debian | adjusting init script defaults for RabbitMQ server
+  template:
+    src: init.defaults.j2
+    dest: "{{ rabbitmq_debian_init_script_defaults_file }}"
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  notify: restart rabbitmq-server
+
 - name: debian | enabling the RabbitMQ Management Console
   rabbitmq_plugin:
     names: rabbitmq_management
@@ -27,3 +37,4 @@
     name: rabbitmq-server
     state: started
     enabled: yes
+
