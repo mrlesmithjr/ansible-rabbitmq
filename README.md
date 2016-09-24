@@ -35,15 +35,10 @@ config_rabbitmq_ha: false  #defines if rabbitmq ha should be configured...define
 enable_rabbitmq_clustering: false  #defines if setting up a rabbitmq cluster...define here or in group_vars/group
 erlang_cookie: 'LSKNKBELKPSTDBBCHETL'  #define erlang cookie for cluster...define here or in group_vars/group
 erlang_cookie_file: '/var/lib/rabbitmq/.erlang.cookie'
-rabbitmq_config:
-  - name: logstash
-    durable: true
-    exchange_name: logstash
-    type: direct
-    routing_key: logstash
-    tags: 'ha-mode=all,ha-sync-mode=automatic'
+rabbitmq_vhosts: []
+rabbitmq_queues: []
 rabbitmq_debian_repo: 'deb http://www.rabbitmq.com/debian/ testing main'
-rabbitmq_debian_repo_key: 'http://www.rabbitmq.com/rabbitmq-signing-key-public.asc'
+rabbitmq_debian_repo_key: 'https://www.rabbitmq.com/rabbitmq-release-signing-key.asc'
 rabbitmq_master: []  #defines the inventory host that should be considered master...define here or in group_vars/group
 rabbitmq_redhat_repo_key: 'https://www.rabbitmq.com/rabbitmq-signing-key-public.asc'
 rabbitmq_redhat_package: 'rabbitmq-server-{{ rabbitmq_redhat_version }}-1.noarch.rpm'
@@ -57,6 +52,10 @@ rabbitmq_users:  #define admin user to create in order to login to WebUI
     read_priv: '.*'
     write_priv: '.*'
     tags: 'administrator'  #define comma separated list of tags to assign to user....management,policymaker,monitoring,administrator...required for management plugin. https://www.rabbitmq.com/management.html
+
+# Service adjustments
+rabbitmq_debian_init_script_defaults_file: '/etc/default/rabbitmq-server'
+rabbitmq_ulimit_n: 1024
 ````
 
 example...
@@ -67,6 +66,38 @@ enable_rabbitmq_clustering: true
 config_rabbitmq_ha: false
 rabbitmq_master: ans-test-1
 ````
+
+Users declaration:
+````
+rabbitmq_users:
+  - name: "super_user"
+    password: "super_pass"
+    vhost: /
+    configure_priv: '.*'
+    read_priv: '.*'
+    write_priv: '.*'
+    tags: 'administrator'
+
+  - name: "monitoring_user"
+    password: "monitoring_pass"
+    vhost: /
+    configure_priv: '.*'
+    read_priv: '.*'
+    write_priv: '.*'
+    tags: 'monitoring'
+````
+
+Note: if you're going to set up many vHost and manage it with the same admin usert
+you have to create this user with admin privileges in every required vHost
+
+
+vHosts declaration:
+````
+rabbitmq_vhosts:
+  - name: "{{ vhost_name }}"
+    tags: 'ha-mode=all,ha-sync-mode=automatic'
+````
+
 
 Dependencies
 ------------
