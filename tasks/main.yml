@@ -13,9 +13,9 @@
   register: clustered
 
 - include: rabbitmq_clustering.yml
-  when: enable_rabbitmq_clustering and (clustered.stat.exists != True)
+  when: rabbitmq_enable_clustering and (clustered.stat.exists != True)
 
 - include: rabbitmq_ha_config.yml
-  when: config_rabbitmq_ha and enable_rabbitmq_clustering
+  when: rabbitmq_config_ha and rabbitmq_enable_clustering
 
 - include: rabbitmq_users.yml

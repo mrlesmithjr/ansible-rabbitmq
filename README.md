@@ -31,10 +31,10 @@ Role Variables
 ````
 ---
 # defaults file for ansible-rabbitmq
-config_rabbitmq_ha: false  #defines if rabbitmq ha should be configured...define here or in group_vars/group
-enable_rabbitmq_clustering: false  #defines if setting up a rabbitmq cluster...define here or in group_vars/group
-erlang_cookie: 'LSKNKBELKPSTDBBCHETL'  #define erlang cookie for cluster...define here or in group_vars/group
-erlang_cookie_file: '/var/lib/rabbitmq/.erlang.cookie'
+rabbitmq_config_ha: false  #defines if rabbitmq ha should be configured...define here or in group_vars/group
+rabbitmq_enable_clustering: false  #defines if setting up a rabbitmq cluster...define here or in group_vars/group
+rabbitmq_erlang_cookie: 'LSKNKBELKPSTDBBCHETL'  #define erlang cookie for cluster...define here or in group_vars/group
+rabbitmq_erlang_cookie_file: '/var/lib/rabbitmq/.erlang.cookie'
 rabbitmq_config:
   - queue_name: logstash
     durable: true
@@ -63,8 +63,8 @@ example...
 group_vars/rabbitmq-cluster-nodes
 ````
 ---
-enable_rabbitmq_clustering: true
-config_rabbitmq_ha: false
+rabbitmq_enable_clustering: true
+rabbitmq_config_ha: false
 rabbitmq_master: ans-test-1
 ````
 
@@ -95,8 +95,8 @@ Example Playbook
 - hosts: all
   become: true
   vars:
-    - config_rabbitmq_ha: true
-    - enable_rabbitmq_clustering: true
+    - rabbitmq_config_ha: true
+    - rabbitmq_enable_clustering: true
     - pri_domain_name: 'test.vagrant.local'
     - rabbitmq_master: 'node0'
   roles:

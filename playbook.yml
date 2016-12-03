@@ -16,8 +16,8 @@
 - hosts: all
   become: true
   vars:
-    - config_rabbitmq_ha: true
-    - enable_rabbitmq_clustering: true
+    - rabbitmq_config_ha: true
+    - rabbitmq_enable_clustering: true
     - pri_domain_name: 'test.vagrant.local'
     - rabbitmq_master: 'node0'
   roles:

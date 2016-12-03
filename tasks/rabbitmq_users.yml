@@ -10,7 +10,7 @@
     tags: "{{ item.tags }}"
     state: present
   with_items: "{{ rabbitmq_users }}"
-  when: (enable_rabbitmq_clustering is defined and not enable_rabbitmq_clustering) or enable_rabbitmq_clustering is not defined
+  when: (rabbitmq_enable_clustering is defined and not rabbitmq_enable_clustering) or rabbitmq_enable_clustering is not defined
 
 - name: rabbitmq_users | creating rabbitmq users
   rabbitmq_user:
@@ -24,4 +24,4 @@
     state: present
   run_once: yes
   with_items: "{{ rabbitmq_users }}"
-  when: (enable_rabbitmq_clustering is defined and enable_rabbitmq_clustering)
+  when: (rabbitmq_enable_clustering is defined and rabbitmq_enable_clustering)
