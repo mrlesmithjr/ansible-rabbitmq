@@ -3,6 +3,11 @@ Role Name
 
 Installs rabbitmq https://www.rabbitmq.com/ (Configurable...HA and Clustering ready)
 
+Build Status
+------------
+
+[![Build Status](https://travis-ci.org/mrlesmithjr/ansible-rabbitmq.svg?branch=master)](https://travis-ci.org/mrlesmithjr/ansible-rabbitmq)
+
 Requirements
 ------------
 
