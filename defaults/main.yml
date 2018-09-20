@@ -12,6 +12,7 @@ rabbitmq_config: []
 rabbitmq_config_ha: false
 
 rabbitmq_config_service: false
+rabbitmq_config_file: 'etc/rabbitmq/rabbitmq.config.j2'
 
 rabbitmq_debian_repo: 'deb http://www.rabbitmq.com/debian/ testing main'
 rabbitmq_debian_repo_key: 'https://www.rabbitmq.com/rabbitmq-release-signing-key.asc'
