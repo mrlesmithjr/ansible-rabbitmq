@@ -15,7 +15,12 @@ rabbitmq_config_service: false
 rabbitmq_config_file: 'etc/rabbitmq/rabbitmq.config.j2'
 
 rabbitmq_debian_repo: 'deb http://www.rabbitmq.com/debian/ testing main'
+#other repos
+#rabbitmq_debian_repo: deb https://dl.bintray.com/rabbitmq/debian {{ ansible_distribution_release }} main #bintray
 rabbitmq_debian_repo_key: 'https://www.rabbitmq.com/rabbitmq-release-signing-key.asc'
+#rabbitmq_debian_repo_key: https://bintray.com/user/downloadSubjectPublicKey?username=rabbitmq
+rabbitmq_debian_erlang_from_rabbit: false
+#rabbitmq_debian_version: 3.7.9 # current version if not defined
 
 # Defines if setting up a rabbitmq cluster
 rabbitmq_enable_clustering: false
