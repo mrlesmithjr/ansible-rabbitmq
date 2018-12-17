@@ -58,6 +58,11 @@ rabbitmq_redhat_package: "rabbitmq-server-{{ rabbitmq_redhat_version }}-1.noarch
 rabbitmq_redhat_url: "http://www.rabbitmq.com/releases/rabbitmq-server/v{{ rabbitmq_redhat_version }}"
 rabbitmq_redhat_version: 3.6.1
 
+# Define extra vhosts to be created
+rabbitmq_extra_vhosts: []
+# - name: /
+#   state: present
+
 # Define admin user to create in order to login to WebUI
 rabbitmq_users:
   - name: rabbitmqadmin

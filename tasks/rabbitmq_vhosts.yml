@@ -1,0 +1,7 @@
+---
+- name: Create vhosts
+  rabbitmq_vhost:
+    name: "{{ item['name'] }}"
+    state: "{{ item['state'] }}"
+  with_items: "{{ rabbitmq_extra_vhosts }}"
+  run_once: "{{ rabbitmq_enable_clustering is defined and rabbitmq_enable_clustering }}"
