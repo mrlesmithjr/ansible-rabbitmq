@@ -7,7 +7,7 @@
     configure_priv: "{{ item['configure_priv'] }}"
     read_priv: "{{ item['read_priv'] }}"
     write_priv: "{{ item['write_priv'] }}"
-    tags: "{{ item['tags'] }}"
+    tags: "{{ item['tags']|default(omit) }}"
     state: present
   become: true
   with_items: "{{ rabbitmq_users }}"
@@ -24,7 +24,7 @@
     configure_priv: "{{ item['configure_priv'] }}"
     read_priv: "{{ item['read_priv'] }}"
     write_priv: "{{ item['write_priv'] }}"
-    tags: "{{ item['tags'] }}"
+    tags: "{{ item['tags']|default(omit) }}"
     state: present
   run_once: yes
   become: true
