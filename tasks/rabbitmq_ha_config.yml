@@ -13,22 +13,6 @@
   notify: restart rabbitmq-server
   when: not rabbitmqadmin_check['stat']['exists']
 
-# - name: rabbitmq_ha_config | install rabbitMQ admin
-#   shell: wget http://guest:guest@localhost:15672/cli/rabbitmqadmin
-#   become: true
-#   when: not rabbitmqadmin_check['stat']['exists']
-
-# - name: rabbitmq_ha_config | moving the rabbitMQ Admin
-#   shell: mv rabbitmqadmin /usr/sbin
-#   become: true
-#   when: not rabbitmqadmin_check['stat']['exists']
-
-# - name: rabbitmq_ha_config | making executable rabbitMQ Admin
-#   shell: chmod +x /usr/sbin/rabbitmqadmin
-#   notify: restart rabbitmq-server
-#   become: true
-#   when: not rabbitmqadmin_check['stat']['exists']
-
 - name: rabbitmq_ha_config | creating queue(s)
   command: rabbitmqadmin declare queue name={{ item['queue_name'] }} durable={{ item['durable']|lower }}
   run_once: true
@@ -37,7 +21,7 @@
 
 - name: rabbitmq_ha_config | setting up ha on queue(s)
   rabbitmq_policy:
-    name: "ha-all"
+    name: ha-all
     pattern: "{{ item['queue_name'] }}"
     tags: "{{ item['tags'] }}"
     state: present
