@@ -1,7 +1,7 @@
 ---
 # defaults file for ansible-rabbitmq
 rabbitmq_config: []
-  # - queue_name: 'logstash'
+  # - queue_name: logstash
   #   durable: true
   #   exchange_name: logstash
   #   type: 'direct'
@@ -28,11 +28,11 @@ rabbitmq_debian_erlang_from_rabbit: false
 # Defines if setting up a rabbitmq cluster
 rabbitmq_enable_clustering: false
 
-rabbitmq_erlang_cookie_file: '/var/lib/rabbitmq/.erlang.cookie'
+rabbitmq_erlang_cookie_file: /var/lib/rabbitmq/.erlang.cookie
 
 rabbitmq_listen_port: 5672
 rabbitmq_listeners: []
-  # - '127.0.0.1'
+  # - 127.0.0.1
   # - '::1'
 
 rabbitmq_ssl_enable: false
@@ -50,21 +50,21 @@ rabitmq_ssl_options: {}
 # Defines the inventory host that should be considered master
 rabbitmq_master: []
 
-rabbitmq_redhat_repo_key: 'https://www.rabbitmq.com/rabbitmq-signing-key-public.asc'
-rabbitmq_redhat_package: 'rabbitmq-server-{{ rabbitmq_redhat_version }}-1.noarch.rpm'
-rabbitmq_redhat_url: 'http://www.rabbitmq.com/releases/rabbitmq-server/v{{ rabbitmq_redhat_version }}'
-rabbitmq_redhat_version: '3.6.1'
+rabbitmq_redhat_repo_key: https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+rabbitmq_redhat_package: "rabbitmq-server-{{ rabbitmq_redhat_version }}-1.noarch.rpm"
+rabbitmq_redhat_url: "http://www.rabbitmq.com/releases/rabbitmq-server/v{{ rabbitmq_redhat_version }}"
+rabbitmq_redhat_version: 3.6.1
 
 # Define admin user to create in order to login to WebUI
 rabbitmq_users:
-  - name: 'rabbitmqadmin'
-    password: 'rabbitmqadmin'
-    vhost: '/'
-    configure_priv: '.*'
-    read_priv: '.*'
-    write_priv: '.*'
+  - name: rabbitmqadmin
+    password: rabbitmqadmin
+    vhost: /
+    configure_priv: ".*"
+    read_priv: ".*"
+    write_priv: ".*"
     # Define comma separated list of tags to assign to user:
     # management,policymaker,monitoring,administrator
     # required for management plugin.
     # https://www.rabbitmq.com/management.html
-    tags: 'administrator'
+    tags: administrator

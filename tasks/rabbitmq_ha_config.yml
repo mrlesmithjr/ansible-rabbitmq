@@ -4,21 +4,30 @@
     path: /usr/sbin/rabbitmqadmin
   register: rabbitmqadmin_check
 
-- name: rabbitmq_ha_config | install rabbitMQ admin
-  shell: wget http://guest:guest@localhost:15672/cli/rabbitmqadmin
+- name: rabbit_ha_config | Installing rabbitMQ admin
+  get_url:
+    url: http://guest:guest@localhost:15672/cli/rabbitmqadmin
+    dest: /usr/sbin/rabbitmqadmin
+    mode: u=rwx,g=rw,o=rw
   become: true
-  when: not rabbitmqadmin_check['stat']['exists']
-
-- name: rabbitmq_ha_config | moving the rabbitMQ Admin
-  shell: mv rabbitmqadmin /usr/sbin
-  become: true
-  when: not rabbitmqadmin_check['stat']['exists']
-
-- name: rabbitmq_ha_config | making executable rabbitMQ Admin
-  shell: chmod +x /usr/sbin/rabbitmqadmin
   notify: restart rabbitmq-server
-  become: true
   when: not rabbitmqadmin_check['stat']['exists']
+
+# - name: rabbitmq_ha_config | install rabbitMQ admin
+#   shell: wget http://guest:guest@localhost:15672/cli/rabbitmqadmin
+#   become: true
+#   when: not rabbitmqadmin_check['stat']['exists']
+
+# - name: rabbitmq_ha_config | moving the rabbitMQ Admin
+#   shell: mv rabbitmqadmin /usr/sbin
+#   become: true
+#   when: not rabbitmqadmin_check['stat']['exists']
+
+# - name: rabbitmq_ha_config | making executable rabbitMQ Admin
+#   shell: chmod +x /usr/sbin/rabbitmqadmin
+#   notify: restart rabbitmq-server
+#   become: true
+#   when: not rabbitmqadmin_check['stat']['exists']
 
 - name: rabbitmq_ha_config | creating queue(s)
   command: rabbitmqadmin declare queue name={{ item['queue_name'] }} durable={{ item['durable']|lower }} --vhost={{ item['vhost'] | default('/') }}
