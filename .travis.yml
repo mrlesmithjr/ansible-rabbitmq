@@ -36,15 +36,15 @@ env:
   - distribution: ubuntu
     init: /lib/systemd/systemd
     version: xenial
-  - distribution: ubuntu
-    init: /sbin/init
-    version: trusty
+  # - distribution: ubuntu
+  #   init: /sbin/init
+  #   version: trusty
   - distribution: debian
     init: /lib/systemd/systemd
     version: stretch
-  - distribution: debian
-    init: /lib/systemd/systemd
-    version: jessie
+  # - distribution: debian
+  #   init: /lib/systemd/systemd
+  #   version: jessie
 
 before_install:
   - "sudo pip install yamllint"
