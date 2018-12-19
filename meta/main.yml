@@ -10,19 +10,22 @@ galaxy_info:
     - 7
   - name: Fedora
     versions:
-    - 22
-    - 23
+    # - 22
+    # - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
   - name: Ubuntu
     versions:
-    - trusty
-  #- name: Debian
-  #  versions:
-  #  - all
-  #  - etch
-  #  - jessie
-  #  - lenny
-  #  - squeeze
-  #  - wheezy
+    - bionic
+    # - trusty
+    - xenial
+  - name: Debian
+    versions:
+    - stretch
   galaxy_tags:
   - clustering
   - system
