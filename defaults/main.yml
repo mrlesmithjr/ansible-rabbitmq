@@ -1,15 +1,15 @@
 ---
 # defaults file for ansible-rabbitmq
 rabbitmq_config: []
-  # - queue_name: logstash
-  #   durable: true
-  #   exchange_name: logstash
-  #   type: 'direct'
-  #   routing_key: 'logstash'
-  #   tags: 'ha-mode=all,ha-sync-mode=automatic'
-  # - policy_pattern: '.*'
-  #   vhost: 'apps'
-  #   tags: 'ha-mode=all,ha-sync-mode=automatic'
+# - queue_name: logstash
+#   durable: true
+#   exchange_name: logstash
+#   type: direct
+#   routing_key: logstash
+#   tags: "ha-mode=all,ha-sync-mode=automatic"
+# - policy_pattern: ".*"
+#   vhost: apps
+#   tags: "ha-mode=all,ha-sync-mode=automatic"
 
 # Defines if rabbitmq ha should be configured
 rabbitmq_config_ha: false
@@ -23,7 +23,9 @@ rabbitmq_debian_repo: "deb https://dl.bintray.com/rabbitmq/debian {{ ansible_dis
 # rabbitmq_debian_repo_key: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
 rabbitmq_debian_repo_key: https://bintray.com/user/downloadSubjectPublicKey?username=rabbitmq
 rabbitmq_debian_erlang_from_rabbit: false
-rabbitmq_debian_version: 3.7.9 # current version if not defined
+
+# current version if not defined
+rabbitmq_debian_version: 3.7.9
 
 # Defines if setting up a rabbitmq cluster
 rabbitmq_enable_clustering: false
@@ -32,20 +34,21 @@ rabbitmq_erlang_cookie_file: /var/lib/rabbitmq/.erlang.cookie
 
 rabbitmq_listen_port: 5672
 rabbitmq_listeners: []
-  # - 127.0.0.1
-  # - '::1'
+# - 127.0.0.1
+# - '::1'
 
 rabbitmq_ssl_enable: false
 rabbitmq_ssl_port: 5671
 rabbitmq_ssl_listeners: []
-  # - '127.0.0.1'
-  # - '::1'
+# - 127.0.0.1
+# - "::1"
+
 rabitmq_ssl_options: {}
-  # cacertfile: '"/path/to/testca/cacert.pem"'
-  # certfile: '"/path/to/server/cert.pem"'
-  # keyfile: '"/path/to/server/key.pem"'
-  # verify: verify_peer
-  # fail_if_no_peer_cert: "false"
+# cacertfile: '"/path/to/testca/cacert.pem"'
+# certfile: '"/path/to/server/cert.pem"'
+# keyfile: '"/path/to/server/key.pem"'
+# verify: verify_peer
+# fail_if_no_peer_cert: "false"
 
 # Defines the inventory host that should be considered master
 rabbitmq_master: []
