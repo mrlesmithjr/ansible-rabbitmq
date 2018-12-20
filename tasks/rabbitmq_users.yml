@@ -29,6 +29,7 @@
     permissions: "{{ item['permissions']|default(omit) }}"
     state: present
   run_once: yes
+  delegate_to: "{{ rabbitmq_master }}"
   become: true
   with_items: "{{ rabbitmq_users }}"
   when: >
