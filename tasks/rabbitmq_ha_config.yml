@@ -24,16 +24,23 @@
   command: rabbitmqadmin declare queue name={{ item['queue_name'] }} durable={{ item['durable']|lower }}
   run_once: true
   become: true
+  when:
+    - item['queue_name'] is defined
   with_items: "{{ rabbitmq_config }}"
 
 - name: rabbitmq_ha_config | setting up ha on queue(s)
   rabbitmq_policy:
-    name: "ha-all"
-    pattern: "{{ item['queue_name'] }}"
-    tags: "{{ item['tags'] }}"
+    name: "ha-all{{ policy_name }}"
+    pattern: "{{ item.queue_name | default(item.policy_pattern) }}"
+    vhost: "{{ item.vhost | default('/') }}"
+    tags: "{{ item.tags }}"
     state: present
+  vars:
+    policy_vhost: "{{ item.vhost | default('/') }}"
+    policy_name: "{{ item.policy_pattern is defined | ternary(policy_vhost + item.policy_pattern|default(''),item.queue_name|default('')) }}"
   run_once: true
   become: true
+  when: item.queue_name is defined or item.policy_pattern is defined
   with_items: "{{ rabbitmq_config }}"
 
 - name: rabbitmq_ha_config | creating exchange(s)
