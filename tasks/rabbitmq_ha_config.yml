@@ -13,9 +13,18 @@
   notify: restart rabbitmq-server
   when: not rabbitmqadmin_check['stat']['exists']
 
+- name: rabbitmq_ha_config | creating exchange(s)
+  command: rabbitmqadmin declare exchange name={{ item['exchange_name'] }} type={{ item['type'] }} --vhost={{ item['vhost'] | default('/') }}
+  run_once: true
+  delegate_to: "{{ rabbitmq_master }}"
+  become: true
+  with_items: "{{ rabbitmq_config }}"
+  when: item['exchange_name'] is defined
+
 - name: rabbitmq_ha_config | creating queue(s)
   command: rabbitmqadmin declare queue name={{ item['queue_name'] }} durable={{ item['durable']|lower }} --vhost={{ item['vhost'] | default('/') }}
   run_once: true
+  delegate_to: "{{ rabbitmq_master }}"
   become: true
   when:
     - item['queue_name'] is defined
@@ -32,20 +41,15 @@
     policy_vhost: "{{ item.vhost | default('/') }}"
     policy_name: "{{ item.policy_pattern is defined | ternary(policy_vhost + item.policy_pattern|default(''),item.queue_name|default('')) }}"
   run_once: true
+  delegate_to: "{{ rabbitmq_master }}"
   become: true
   when: item.queue_name is defined or item.policy_pattern is defined
   with_items: "{{ rabbitmq_config }}"
 
-- name: rabbitmq_ha_config | creating exchange(s)
-  command: rabbitmqadmin declare exchange name={{ item['exchange_name'] }} type={{ item['type'] }} --vhost={{ item['vhost'] | default('/') }}
-  run_once: true
-  become: true
-  with_items: "{{ rabbitmq_config }}"
-  when: item['exchange_name'] is defined
-
 - name: rabbitmq_ha_config | creating binding(s)
   command: rabbitmqadmin declare binding source={{ item['exchange_name'] }} destination_type="queue" destination={{ item['queue_name'] }} routing_key={{ item['routing_key'] }} --vhost={{ item['vhost'] | default('/') }}
   run_once: true
+  delegate_to: "{{ rabbitmq_master }}"
   become: true
   with_items: "{{ rabbitmq_config }}"
   when: item['exchange_name'] is defined

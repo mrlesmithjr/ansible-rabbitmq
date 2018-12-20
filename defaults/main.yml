@@ -29,6 +29,8 @@ rabbitmq_debian_version: 3.7.9
 
 # Defines if setting up a rabbitmq cluster
 rabbitmq_enable_clustering: false
+# Defines the inventory host that should be considered master
+rabbitmq_master: None
 
 rabbitmq_erlang_cookie_file: /var/lib/rabbitmq/.erlang.cookie
 
@@ -49,9 +51,6 @@ rabitmq_ssl_options: {}
 # keyfile: '"/path/to/server/key.pem"'
 # verify: verify_peer
 # fail_if_no_peer_cert: "false"
-
-# Defines the inventory host that should be considered master
-rabbitmq_master: []
 
 rabbitmq_redhat_repo_key: https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 rabbitmq_redhat_package: "rabbitmq-server-{{ rabbitmq_redhat_version }}-1.noarch.rpm"
