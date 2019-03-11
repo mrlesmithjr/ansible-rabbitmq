@@ -10,3 +10,4 @@
     - role: ansible-etc-hosts
     - role: ansible-rabbitmq
   tasks:
+  tasks:
