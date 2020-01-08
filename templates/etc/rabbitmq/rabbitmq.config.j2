@@ -5,6 +5,9 @@
 {% elif rabbitmq_listeners is defined %}
    {tcp_listeners, [{% for item in rabbitmq_listeners %}{"{{ item }}", {{ rabbitmq_listen_port }}}{% if not loop.last %}, {% endif %}{% endfor %}]}
 {% endif %}
+{% if rabbitmq_cluster_partition_handling is defined %}
+   ,{cluster_partition_handling, {{ rabbitmq_cluster_partition_handling }}}
+{% endif %}
 {% if rabbitmq_ssl_enable %}
    ,
    {num_ssl_acceptors, 10},
