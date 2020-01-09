@@ -1,7 +1,9 @@
 ---
 - name: debian | Adding Pre-Reqs
   apt:
-    name: ['gnupg2']
+    name:
+      - gnupg2
+      - apt-transport-https
     state: present
   become: true
   register: result
