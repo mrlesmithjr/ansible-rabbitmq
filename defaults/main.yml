@@ -41,6 +41,9 @@ rabbitmq_listeners: []
 # - 127.0.0.1
 # - '::1'
 
+# Uncomment to set cluster partition handling strategy (https://www.rabbitmq.com/partitions.html)
+#rabbitmq_cluster_partition_handling: ignore
+
 rabbitmq_ssl_enable: false
 rabbitmq_ssl_port: 5671
 rabbitmq_ssl_listeners: []
