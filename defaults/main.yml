@@ -24,10 +24,10 @@ rabbitmq_env_config: {}
 rabbitmq_debian_repo: "deb https://dl.bintray.com/rabbitmq/debian {{ ansible_distribution_release }} main #bintray"
 # rabbitmq_debian_repo_key: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
 rabbitmq_debian_repo_key: https://bintray.com/user/downloadSubjectPublicKey?username=rabbitmq
-rabbitmq_debian_erlang_from_rabbit: false
+rabbitmq_debian_erlang_from_rabbit: true
 
 # current version if not defined
-rabbitmq_debian_version: 3.7.9
+rabbitmq_debian_version: 3.7.21-1
 
 # Defines if setting up a rabbitmq cluster
 rabbitmq_enable_clustering: false
