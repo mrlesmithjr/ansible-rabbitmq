@@ -7,7 +7,7 @@
   run_once: "{{ rabbitmq_enable_clustering is defined and rabbitmq_enable_clustering }}"
   register: rabbitmq_created_vhosts
 
-- name: rabbitmq_extra_vhosts | Check guest administrator is present
+- name: rabbitmq_extra_vhosts | Check guest administrator is present # noqa 503
   command: rabbitmqctl -q list_users
   become: true
   run_once: "{{ rabbitmq_enable_clustering is defined and rabbitmq_enable_clustering }}"

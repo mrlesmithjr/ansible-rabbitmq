@@ -47,7 +47,7 @@
   with_items: "{{ rabbitmq_config }}"
 
 - name: rabbitmq_ha_config | creating binding(s)
-  command: rabbitmqadmin declare binding source={{ item['exchange_name'] }} destination_type="queue" destination={{ item['queue_name'] }} routing_key={{ item['routing_key'] }} --vhost={{ item['vhost'] | default('/') }}
+  command: rabbitmqadmin declare binding source={{ item['exchange_name'] }} destination_type="queue" destination={{ item['queue_name'] }} routing_key={{ item['routing_key'] }} --vhost={{ item['vhost'] | default('/') }} # noqa 204
   run_once: true
   delegate_to: "{{ rabbitmq_master }}"
   become: true
