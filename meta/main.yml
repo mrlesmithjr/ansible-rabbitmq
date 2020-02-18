@@ -25,6 +25,7 @@ galaxy_info:
         - xenial
     - name: Debian
       versions:
+        - buster
         - stretch
   galaxy_tags:
     - clustering
