@@ -84,11 +84,11 @@
   become: true
   when: inventory_hostname != rabbitmq_master
 
-- name: rabbitmq_clustering | marking as clustered
+- name: rabbitmq_clustering | marking as clustered # noqa 503
   file:
     path: /etc/rabbitmq/clustered
     state: touch
   become: true
   when: >
-        cluster_master['changed'] or
-        cluster_joined['changed']
+    cluster_master['changed'] or
+    cluster_joined['changed']

@@ -27,7 +27,7 @@ rabbitmq_debian_repo_key: https://bintray.com/user/downloadSubjectPublicKey?user
 rabbitmq_debian_erlang_from_rabbit: true
 
 # current version if not defined
-rabbitmq_debian_version: 3.7.21-1
+rabbitmq_debian_version: 3.7.24-1
 
 # Defines if setting up a rabbitmq cluster
 rabbitmq_enable_clustering: false
