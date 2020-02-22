@@ -1,12 +1,7 @@
 ---
-- hosts: rabbitmq_cluster
-  vars:
-    etc_hosts_add_all_hosts: true
-    etc_hosts_pri_dns_name: '{{ pri_domain_name }}'
-    pri_domain_name: 'vagrant.local'
-    rabbitmq_enable_clustering: true
-    rabbitmq_master: "{{ groups['rabbitmq_cluster'][0] }}"
-  roles:
-    - role: ansible-etc-hosts
-    - role: ansible-rabbitmq
+- name: Example Playbook
+  hosts: all
   tasks:
+    - name: Include ansible-rabbitmq
+      include_role:
+        name: ansible-rabbitmq
