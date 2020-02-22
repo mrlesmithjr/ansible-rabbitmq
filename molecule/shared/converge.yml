@@ -1,5 +1,5 @@
 ---
-- name: Example Playbook
+- name: Converge
   hosts: all
   tasks:
     - name: Include ansible-rabbitmq
