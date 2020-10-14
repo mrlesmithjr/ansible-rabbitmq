@@ -7,6 +7,15 @@
   register: result
   until: result is successful
 
+- name: redhat | installing erlang-solutions repo
+  yum_repository:
+    name: erlang-solutions
+    description: erlang rpms from erlang-solutions
+    baseurl: https://packages.erlang-solutions.com/rpm/centos/$releasever/$basearch
+    enabled: yes
+    gpgkey: https://packages.erlang-solutions.com/rpm/erlang_solutions.asc
+    gpgcheck: yes
+
 - name: redhat | installing erlang
   yum:
     name: erlang
