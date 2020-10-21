@@ -51,6 +51,10 @@
   become: true
   when: inventory_hostname == rabbitmq_master
 
+- name: rabbitmq_clustering | Pause for 1 minute to wait for rabbitmq to start properly
+  pause:
+    minutes: 2
+
 - name: rabbitmq_clustering | sending sigterm to any running rabbitmq processes
   shell: pkill -u rabbitmq || true
   become: true
