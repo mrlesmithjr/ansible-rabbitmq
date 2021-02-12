@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    rabbitmq_debian_version_defined: false
+    rabbitmq_debian_repo: "deb https://dl.bintray.com/rabbitmq-erlang/debian {{ ansible_distribution_release }} erlang-22.x"
+  tasks:
+    - name: Include ansible-rabbitmq
+      include_role:
+        name: ansible-rabbitmq
