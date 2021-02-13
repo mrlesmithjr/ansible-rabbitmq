@@ -5,6 +5,7 @@
       - gnupg2
       - apt-transport-https
     state: present
+    update_cache: true
   become: true
   register: result
   until: result is successful
@@ -44,18 +45,11 @@
 - name: debian | installing RabbitMQ server
   apt:
     name:
-      - rabbitmq-server{{ (rabbitmq_debian_version is defined) | ternary(['=',rabbitmq_debian_version] | join(''),'') }}
+      - rabbitmq-server{{ (rabbitmq_debian_version_defined and rabbitmq_debian_version is defined) | ternary(['=',rabbitmq_debian_version] | join(''),'') }}
     state: present
   become: true
   register: result
   until: result is successful
-
-- name: debian | enabling the RabbitMQ Management Console
-  rabbitmq_plugin:
-    names: rabbitmq_management
-    state: enabled
-  become: true
-  notify: restart rabbitmq-server
 
 - name: debian | ensuring that the RabbitMQ service is running
   service:
@@ -63,3 +57,10 @@
     state: started
     enabled: yes
   become: true
+
+- name: debian | enabling the RabbitMQ Management Console
+  rabbitmq_plugin:
+    names: rabbitmq_management
+    state: enabled
+  become: true
+  notify: restart rabbitmq-server

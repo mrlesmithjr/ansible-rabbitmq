@@ -10,13 +10,13 @@ install:
   - ansible --version
   - molecule --version
 script:
-  - molecule test --scenario-name centos7
-  # - molecule test --scenario-name centos8
+  #- molecule test --scenario-name centos7
+  - molecule test --scenario-name centos8
   # - molecule test --scenario-name debian8
   - molecule test --scenario-name debian9
   - molecule test --scenario-name debian10
-  # - molecule test --scenario-name fedora
-  - molecule test --scenario-name ubuntu1604
+  # - molecule test --scenario-name fedora  
   - molecule test --scenario-name ubuntu1804
+  - molecule test --scenario-name ubuntu2004
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
