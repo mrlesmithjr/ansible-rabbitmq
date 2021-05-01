@@ -26,15 +26,6 @@
   register: result
   until: result is successful
 
-- name: debian | add Rabbitmq erlang repo key
-  apt_key:
-    url: https://bintray.com/user/downloadSubjectPublicKey?username=rabbitmq-erlang
-    state: present
-  become: true
-  register: result
-  until: result is successful
-  when: rabbitmq_debian_erlang_from_rabbit
-
 - name: debian | add Rabbitmq erlang repo
   apt_repository:
     repo: deb https://dl.bintray.com/rabbitmq-erlang/debian {{ ansible_distribution_release }} erlang
