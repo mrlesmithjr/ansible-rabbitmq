@@ -4,6 +4,8 @@ galaxy_info:
   description: Ansible role to install/configure RabbitMQ
   license: MIT
   min_ansible_version: 1.2
+  role_name: rabbitmq
+  namespace: mrlesmithjr
   platforms:
     - name: EL
       versions:

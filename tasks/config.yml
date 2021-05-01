@@ -3,6 +3,7 @@
   template:
     src: "{{ rabbitmq_config_file }}"
     dest: "/etc/rabbitmq/rabbitmq.config"
+    mode: u=rw,g=r,o=r
   become: true
   notify: "restart rabbitmq-server"
 
@@ -10,5 +11,6 @@
   template:
     src: "{{ rabbitmq_config_env_file }}"
     dest: "/etc/rabbitmq/rabbitmq-env.conf"
+    mode: u=rw,g=r,o=r
   become: true
   notify: "restart rabbitmq-server"
