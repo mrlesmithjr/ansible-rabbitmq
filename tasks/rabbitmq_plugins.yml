@@ -2,7 +2,6 @@
 - name: rabbitmq_plugins | installing plugin(s)
   rabbitmq_plugin:
     name: "{{ rabbitmq_plugins }}"
-  run_once: true
-  delegate_to: "{{ rabbitmq_master }}"
   become: true
   when: rabbitmq_plugins
+  notify: restart rabbitmq-server

@@ -12,11 +12,11 @@
 - include: fedora.yml
   when: ansible_distribution == "Fedora"
 
-- include: config.yml
-  when: rabbitmq_config_service
-
 - include: rabbitmq_plugins.yml
   when: rabbitmq_plugins is defined
+
+- include: config.yml
+  when: rabbitmq_config_service
 
 - name: checking to see if already clustered
   stat:
