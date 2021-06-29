@@ -15,6 +15,9 @@
 - include: config.yml
   when: rabbitmq_config_service
 
+- include: rabbitmq_plugins.yml
+  when: rabbitmq_plugins is defined
+
 - name: checking to see if already clustered
   stat:
     path: /etc/rabbitmq/clustered
