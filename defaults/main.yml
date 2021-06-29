@@ -7,6 +7,13 @@ rabbitmq_config: []
 #   type: direct
 #   routing_key: logstash
 #   tags: "ha-mode=all,ha-sync-mode=automatic"
+# - queue_name: logstash-quorum
+#   durable: true
+#   exchange_name: logstash-quorum
+#   type: direct
+#   routing_key: logstash
+#   queue_type: quorum
+#   tags: "ha-mode=all,ha-sync-mode=automatic"
 # - policy_pattern: ".*"
 #   vhost: apps
 #   tags: "ha-mode=all,ha-sync-mode=automatic"
