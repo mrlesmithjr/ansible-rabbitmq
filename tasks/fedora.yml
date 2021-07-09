@@ -43,10 +43,3 @@
     state: started
     enabled: true
   become: true
-
-- name: fedora | enabling the RabbitMQ Management Console
-  rabbitmq_plugin:
-    names: rabbitmq_management
-    state: enabled
-  notify: restart rabbitmq-server
-  become: true

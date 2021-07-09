@@ -12,6 +12,9 @@
 - include: fedora.yml
   when: ansible_distribution == "Fedora"
 
+- include: rabbitmq_plugins.yml
+  when: rabbitmq_plugins is defined
+
 - include: config.yml
   when: rabbitmq_config_service
 

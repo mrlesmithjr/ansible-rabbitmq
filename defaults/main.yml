@@ -85,3 +85,6 @@ rabbitmq_users:
     # required for management plugin.
     # https://www.rabbitmq.com/management.html
     tags: administrator
+
+# comma separated list of plugins to enable
+rabbitmq_plugins: "rabbitmq_management"
