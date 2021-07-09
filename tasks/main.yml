@@ -32,9 +32,8 @@
 - include: rabbitmq_vhosts.yml
   when: rabbitmq_extra_vhosts is defined
 
-- include: rabbitmq_ha_config.yml
+- include: rabbitmq_config.yml
   when: >
-        rabbitmq_config_ha and
         rabbitmq_enable_clustering and
         rabbitmq_config is defined
 
