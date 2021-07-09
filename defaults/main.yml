@@ -21,14 +21,18 @@ rabbitmq_env_config: {}
 
 # rabbitmq_debian_repo: deb http://www.rabbitmq.com/debian/ testing main
 #other repos
-rabbitmq_debian_repo: "deb https://dl.bintray.com/rabbitmq/debian {{ ansible_distribution_release }} main #bintray"
-# rabbitmq_debian_repo_key: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
-rabbitmq_debian_repo_key: https://bintray.com/user/downloadSubjectPublicKey?username=rabbitmq
+rabbitmq_debian_repo: "deb https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/deb/debian {{ ansible_distribution_release }} main"
+rabbitmq_debian_repo_key: "https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/gpg.9F4587F226208342.key"
+rabbitmq_debian_team_key: "0x0A9AF2115F4687BD29803A206B73A36E6026DFCA"
+
 rabbitmq_debian_erlang_from_rabbit: true
+rabbitmq_debian_erlang_repo: "deb https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/deb/debian {{ ansible_distribution_release }} main"
+rabbitmq_debian_erlang_repo_key: "https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key"
+
 
 # current version if not defined
 rabbitmq_debian_version_defined: true
-rabbitmq_debian_version: 3.8.11-1
+rabbitmq_debian_version: 3.8.18-1
 
 # Defines if setting up a rabbitmq cluster
 rabbitmq_enable_clustering: false

@@ -10,9 +10,18 @@
   register: result
   until: result is successful
 
-- name: debian | adding RabbitMQ public GPG key to the apt repo
+- name: debian | adding RabbitMQ repo public GPG key to the apt repo
   apt_key:
     url: "{{ rabbitmq_debian_repo_key }}"
+    state: present
+  become: true
+  register: result
+  until: result is successful
+
+- name: debian | adding RabbitMQ team public GPG key to the apt repo
+  apt_key:
+    keyserver: keys.openpgp.org
+    id: "{{ rabbitmq_debian_team_key }}"
     state: present
   become: true
   register: result
@@ -26,9 +35,17 @@
   register: result
   until: result is successful
 
+- name: debian | adding RabbitMQ relang repo public GPG key to the apt repo
+  apt_key:
+    url: "{{ rabbitmq_debian_erlang_repo_key }}"
+    state: present
+  become: true
+  register: result
+  until: result is successful
+
 - name: debian | add Rabbitmq erlang repo
   apt_repository:
-    repo: deb https://dl.bintray.com/rabbitmq-erlang/debian {{ ansible_distribution_release }} erlang
+    repo: "{{ rabbitmq_debian_erlang_repo }}"
     state: present
   become: true
   when: rabbitmq_debian_erlang_from_rabbit
