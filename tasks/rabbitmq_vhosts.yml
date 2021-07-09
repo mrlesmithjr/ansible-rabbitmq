@@ -3,6 +3,7 @@
   rabbitmq_vhost:
     name: "{{ item['name'] }}"
     state: "{{ item['state'] }}"
+  become: true
   with_items: "{{ rabbitmq_extra_vhosts }}"
   run_once: "{{ rabbitmq_enable_clustering is defined and rabbitmq_enable_clustering }}"
   register: rabbitmq_created_vhosts
