@@ -28,7 +28,7 @@ mccabe==0.6.1; python_version >= "2.7" and python_full_version < "3.0.0" or pyth
 molecule-docker==0.3.3; python_version >= "3.6"
 molecule==3.3.0; python_version >= "3.6"
 packaging==20.9; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
-paramiko==2.7.2; python_version >= "3.6"
+paramiko==2.10.1; python_version >= "3.6"
 pathspec==0.8.1; python_version >= "3.5" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.5"
 pluggy==0.13.1; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
 poyo==0.5.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
