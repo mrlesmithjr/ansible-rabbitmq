@@ -6,5 +6,5 @@
     rabbitmq_debian_repo: "deb https://dl.bintray.com/rabbitmq-erlang/debian {{ ansible_distribution_release }} erlang-22.x"
   tasks:
     - name: Include ansible-rabbitmq
-      include_role:
+      ansible.builtin.include_role:
         name: ansible-rabbitmq

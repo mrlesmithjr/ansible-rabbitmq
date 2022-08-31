@@ -9,7 +9,7 @@
   register: rabbitmq_created_vhosts
 
 - name: rabbitmq_extra_vhosts | Check guest administrator is present # noqa 503
-  command: rabbitmqctl -q list_users
+  ansible.builtin.command: rabbitmqctl -q list_users
   become: true
   run_once: "{{ rabbitmq_enable_clustering is defined and rabbitmq_enable_clustering }}"
   when: rabbitmq_created_vhosts.changed
@@ -17,7 +17,7 @@
   register: rabbitmq_existing_users
 
 - name: rabbitmq_extra_vhosts | Give access to new vhosts to guest administrator
-  command: "rabbitmqctl -q set_permissions -p {{ item['name'] }} guest '.*' '.*' '.*'"
+  ansible.builtin.command: "rabbitmqctl -q set_permissions -p {{ item['name'] }} guest '.*' '.*' '.*'"
   become: true
   run_once: "{{ rabbitmq_enable_clustering is defined and rabbitmq_enable_clustering }}"
   with_items: "{{ rabbitmq_created_vhosts.results|selectattr('changed')|list }}"
