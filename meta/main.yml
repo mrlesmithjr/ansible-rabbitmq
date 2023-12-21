@@ -3,33 +3,22 @@ galaxy_info:
   author: Larry Smith Jr.
   description: Ansible role to install/configure RabbitMQ
   license: MIT
-  min_ansible_version: 1.2
+  min_ansible_version: "1.2"
   role_name: rabbitmq
   namespace: mrlesmithjr
   platforms:
     - name: EL
       versions:
-        - 8
+        - all
     - name: Fedora
       versions:
-        # - 22
-        # - 23
-        - 24
-        - 25
-        - 26
-        - 27
-        - 28
-        - 29
+        - all
     - name: Ubuntu
       versions:
-        - focal
-        - bionic
-        # - trusty
-        # - xenial
+        - all
     - name: Debian
       versions:
-        - buster
-        - stretch
+        - all
   galaxy_tags:
     - clustering
     - system

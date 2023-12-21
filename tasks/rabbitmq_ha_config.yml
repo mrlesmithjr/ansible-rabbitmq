@@ -8,7 +8,7 @@
     state: present
   vars:
     policy_vhost: "{{ item.vhost | default('/') }}"
-    policy_name: "{{ item.policy_pattern is defined | ternary(policy_vhost + item.policy_pattern|default(''),item.queue_name|default('')) }}"
+    policy_name: "{{ item.policy_pattern is defined | ternary(policy_vhost + item.policy_pattern | default(''), item.queue_name | default('')) }}"
   run_once: true
   delegate_to: "{{ rabbitmq_master }}"
   become: true
