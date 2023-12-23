@@ -1,6 +1,6 @@
 ---
 - name: fedora | installing pre-reqs
-  dnf:
+  ansible.builtin.dnf:
     name: ['wget']
     state: present
   become: true
@@ -8,7 +8,7 @@
   until: result is successful
 
 - name: fedora | installing erlang
-  dnf:
+  ansible.builtin.dnf:
     name: ['erlang']
     state: present
   become: true
@@ -16,7 +16,7 @@
   until: result is successful
 
 - name: fedora | adding RabbitMQ public GPG key
-  rpm_key:
+  ansible.builtin.rpm_key:
     key: "{{ rabbitmq_redhat_repo_key }}"
     state: present
   become: true
@@ -24,13 +24,14 @@
   until: result is successful
 
 - name: fedora | downloading RabbitMQ
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ rabbitmq_redhat_url }}/{{ rabbitmq_redhat_package }}"
     dest: "/opt/{{ rabbitmq_redhat_package }}"
+    mode: u=rw,g=r,o=r
   become: true
 
 - name: fedora | installing RabbitMQ
-  dnf:
+  ansible.builtin.dnf:
     name: "/opt/{{ rabbitmq_redhat_package }}"
     state: present
   become: true
@@ -38,7 +39,7 @@
   until: result is successful
 
 - name: fedora | starting and enabling RabbitMQ service
-  service:
+  ansible.builtin.service:
     name: rabbitmq-server
     state: started
     enabled: true

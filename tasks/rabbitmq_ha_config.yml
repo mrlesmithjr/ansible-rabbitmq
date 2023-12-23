@@ -1,6 +1,6 @@
 ---
 - name: rabbitmq_ha_config | setting up ha on queue(s)
-  rabbitmq_policy:
+  community.rabbitmq.rabbitmq_policy:
     name: "ha-all{{ policy_name }}"
     pattern: "{{ item.queue_name | default(item.policy_pattern) }}"
     vhost: "{{ item.vhost | default('/') }}"
@@ -8,7 +8,7 @@
     state: present
   vars:
     policy_vhost: "{{ item.vhost | default('/') }}"
-    policy_name: "{{ item.policy_pattern is defined | ternary(policy_vhost + item.policy_pattern|default(''),item.queue_name|default('')) }}"
+    policy_name: "{{ item.policy_pattern is defined | ternary(policy_vhost + item.policy_pattern | default(''), item.queue_name | default('')) }}"
   run_once: true
   delegate_to: "{{ rabbitmq_master }}"
   become: true

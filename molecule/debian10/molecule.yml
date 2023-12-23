@@ -12,17 +12,21 @@ lint: |
   flake8
 platforms:
   - name: debian10
-    image: jrei/systemd-debian:10
+    image: mrlesmithjr/debian:10
     privileged: true
     command: /lib/systemd/systemd
-    tmpfs:
-      - /run
-      - /tmp
+    # tmpfs:
+    #   - /run
+    #   - /tmp
     volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
+    # groups: []
 provisioner:
   name: ansible
   playbooks:
     converge: ../shared/converge.yml
+    prepare: ../shared/prepare.yml
+    verify: ../shared/verify.yml
 verifier:
   name: ansible
