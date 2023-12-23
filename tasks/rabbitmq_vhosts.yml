@@ -1,6 +1,6 @@
 ---
 - name: rabbitmq_extra_vhosts | Create vhosts
-  rabbitmq_vhost:
+  community.rabbitmq.rabbitmq_vhost:
     name: "{{ item['name'] }}"
     state: "{{ item['state'] }}"
   become: true

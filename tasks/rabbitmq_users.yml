@@ -1,6 +1,6 @@
 ---
 - name: rabbitmq_users | creating rabbitmq users
-  rabbitmq_user:
+  community.rabbitmq.rabbitmq_user:
     name: "{{ item['name'] }}"
     password: "{{ item['password'] }}"
     vhost: "{{ item['vhost'] | default(omit) }}"
@@ -20,7 +20,7 @@
           rabbitmq_enable_clustering is not defined
 
 - name: rabbitmq_users | creating rabbitmq users
-  rabbitmq_user:
+  community.rabbitmq.rabbitmq_user:
     name: "{{ item['name'] }}"
     password: "{{ item['password'] }}"
     vhost: "{{ item['vhost'] | default(omit) }}"

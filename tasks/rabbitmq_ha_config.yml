@@ -1,6 +1,6 @@
 ---
 - name: rabbitmq_ha_config | setting up ha on queue(s)
-  rabbitmq_policy:
+  community.rabbitmq.rabbitmq_policy:
     name: "ha-all{{ policy_name }}"
     pattern: "{{ item.queue_name | default(item.policy_pattern) }}"
     vhost: "{{ item.vhost | default('/') }}"
