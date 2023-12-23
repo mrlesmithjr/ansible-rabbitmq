@@ -39,7 +39,7 @@ rabbitmq_debian_erlang_repo_key: "https://github.com/rabbitmq/signing-keys/relea
 
 # current version if not defined
 rabbitmq_debian_version_defined: true
-rabbitmq_debian_version: 3.8.18-1
+rabbitmq_debian_version: 3.12.10-1
 
 # Defines if setting up a rabbitmq cluster
 rabbitmq_enable_clustering: false
