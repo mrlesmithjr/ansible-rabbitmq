@@ -28,13 +28,13 @@ rabbitmq_env_config: {}
 
 # rabbitmq_debian_repo: deb http://www.rabbitmq.com/debian/ testing main
 #other repos
-rabbitmq_debian_repo: "deb https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/deb/debian {{ ansible_distribution_release }} main"
-rabbitmq_debian_repo_key: "https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/gpg.9F4587F226208342.key"
+rabbitmq_debian_repo: "deb https://ppa1.novemberain.com/rabbitmq/rabbitmq-server/deb/ubuntu {{ ansible_distribution_release }} main"
+rabbitmq_debian_repo_key: "https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-server.9F4587F226208342.key"
 rabbitmq_debian_team_key: "0x0A9AF2115F4687BD29803A206B73A36E6026DFCA"
 
 rabbitmq_debian_erlang_from_rabbit: true
-rabbitmq_debian_erlang_repo: "deb https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/deb/debian {{ ansible_distribution_release }} main"
-rabbitmq_debian_erlang_repo_key: "https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-erlang/gpg.E495BB49CC4BBE5B.key"
+rabbitmq_debian_erlang_repo: "deb https://ppa1.novemberain.com/rabbitmq/rabbitmq-erlang/deb/ubuntu {{ ansible_distribution_release }} main"
+rabbitmq_debian_erlang_repo_key: "https://github.com/rabbitmq/signing-keys/releases/download/3.0/cloudsmith.rabbitmq-erlang.E495BB49CC4BBE5B.key"
 
 
 # current version if not defined
@@ -69,10 +69,10 @@ rabitmq_ssl_options: {}
 # verify: verify_peer
 # fail_if_no_peer_cert: "false"
 
-rabbitmq_redhat_repo_key: https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
+rabbitmq_redhat_repo_key: https://github.com/rabbitmq/signing-keys/releases/download/3.0/rabbitmq-release-signing-key.asc
 rabbitmq_redhat_package: "rabbitmq-server-{{ rabbitmq_redhat_version }}-1.el{{ ansible_distribution_major_version }}.noarch.rpm"
-rabbitmq_redhat_url: "https://dl.bintray.com/rabbitmq/rpm/rabbitmq-server/v3.8.x/el/{{ ansible_distribution_major_version }}/noarch"
-rabbitmq_redhat_version: 3.8.11
+rabbitmq_redhat_url: "https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/rpm/el/{{ ansible_distribution_major_version }}/noarch"
+rabbitmq_redhat_version: 3.12.10
 
 # Define extra vhosts to be created
 rabbitmq_extra_vhosts: []
