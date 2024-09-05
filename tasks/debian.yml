@@ -10,19 +10,10 @@
   register: result
   until: result is successful
 
-- name: debian | adding RabbitMQ repo public GPG key to the apt repo
-  ansible.builtin.apt_key:
+- name: debian | add RabbitMQ repo GPG Signin Keys
+  ansible.builtin.get_url:
     url: "{{ rabbitmq_debian_repo_key }}"
-    state: present
-  become: true
-  register: result
-  until: result is successful
-
-- name: debian | adding RabbitMQ team public GPG key to the apt repo
-  ansible.builtin.apt_key:
-    keyserver: keys.openpgp.org
-    id: "{{ rabbitmq_debian_team_key }}"
-    state: present
+    dest: "/usr/share/keyrings/rabbitmq-server.asc"
   become: true
   register: result
   until: result is successful
@@ -36,9 +27,9 @@
   until: result is successful
 
 - name: debian | adding RabbitMQ relang repo public GPG key to the apt repo
-  ansible.builtin.apt_key:
+  ansible.builtin.get_url:
     url: "{{ rabbitmq_debian_erlang_repo_key }}"
-    state: present
+    dest: "/usr/share/keyrings/rabbitmq-erlang.asc"
   become: true
   register: result
   until: result is successful
