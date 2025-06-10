@@ -58,7 +58,7 @@ python-slugify==8.0.1 ; python_full_version >= "3.8.1" and python_version < "4.0
 pywin32==306 ; python_full_version >= "3.8.1" and python_version < "4.0" and sys_platform == "win32"
 pyyaml==6.0.1 ; python_full_version >= "3.8.1" and python_version < "4.0"
 referencing==0.32.0 ; python_full_version >= "3.8.1" and python_version < "4.0"
-requests==2.31.0 ; python_full_version >= "3.8.1" and python_version < "4.0"
+requests==2.32.4 ; python_full_version >= "3.8.1" and python_version < "4.0"
 resolvelib==0.8.1 ; python_full_version >= "3.8.1" and python_version < "4.0"
 rich==13.7.0 ; python_full_version >= "3.8.1" and python_version < "4.0"
 rpds-py==0.15.2 ; python_full_version >= "3.8.1" and python_version < "4.0"
