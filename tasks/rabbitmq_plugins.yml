@@ -3,5 +3,5 @@
   community.rabbitmq.rabbitmq_plugin:
     name: "{{ rabbitmq_plugins }}"
   become: true
-  when: rabbitmq_plugins
+  when: rabbitmq_plugins | length > 0
   notify: restart rabbitmq-server
