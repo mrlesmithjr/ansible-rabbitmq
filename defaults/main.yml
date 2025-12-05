@@ -70,8 +70,8 @@ rabitmq_ssl_options: {}
 # fail_if_no_peer_cert: "false"
 
 rabbitmq_redhat_repo_key: https://github.com/rabbitmq/signing-keys/releases/download/3.0/rabbitmq-release-signing-key.asc
-rabbitmq_redhat_package: "rabbitmq-server-{{ rabbitmq_redhat_version }}-1.el{{ ansible_distribution_major_version }}.noarch.rpm"
-rabbitmq_redhat_url: "https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/rpm/el/{{ ansible_distribution_major_version }}/noarch"
+rabbitmq_redhat_package: "rabbitmq-server-{{ rabbitmq_redhat_version }}-1.el{{ ansible_facts['distribution_major_version'] }}.noarch.rpm"
+rabbitmq_redhat_url: "https://dl.cloudsmith.io/public/rabbitmq/rabbitmq-server/rpm/el/{{ ansible_facts['distribution_major_version'] }}/noarch"
 rabbitmq_redhat_version: 3.12.10
 
 # Define extra vhosts to be created
