@@ -1,6 +1,6 @@
 ---
 - name: redhat | installing pre-reqs
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: ['epel-release', 'wget']
     state: present
   become: true
@@ -8,7 +8,7 @@
   until: result is successful
 
 - name: redhat | installing erlang
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: erlang
     state: present
   become: true
@@ -31,7 +31,7 @@
   become: true
 
 - name: redhat | installing RabbitMQ
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "/opt/{{ rabbitmq_redhat_package }}"
     state: present
   become: true

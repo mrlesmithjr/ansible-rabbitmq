@@ -31,9 +31,10 @@ jobs:
           # - fedora35
           # - rocky8
           # - ubuntu1604
-          - ubuntu1804
+          # - ubuntu1804
           - ubuntu2004
-          # - ubuntu2204
+          - ubuntu2204
+          - ubuntu2404
         python-version: [3.9]
     steps:
       - uses: actions/checkout@v3
@@ -43,7 +44,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
