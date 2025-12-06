@@ -28,12 +28,12 @@ rabbitmq_env_config: {}
 
 # rabbitmq_debian_repo: deb http://www.rabbitmq.com/debian/ testing main
 #other repos
-rabbitmq_debian_repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/rabbitmq-server.asc] https://deb1.rabbitmq.com/rabbitmq-server/{{ ansible_facts['distribution'] | lower }}/{{ ansible_facts['distribution_release'] }} {{ ansible_facts['distribution_release'] }} main"
+rabbitmq_debian_repo: "deb [signed-by=/usr/share/keyrings/rabbitmq-server.asc] https://deb1.rabbitmq.com/rabbitmq-server/{{ ansible_facts['distribution'] | lower }}/{{ ansible_facts['distribution_release'] }} {{ ansible_facts['distribution_release'] }} main"
 rabbitmq_debian_repo_key: "https://github.com/rabbitmq/signing-keys/releases/download/3.0/rabbitmq-release-signing-key.asc"
 
 
 rabbitmq_debian_erlang_from_rabbit: true
-rabbitmq_debian_erlang_repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/rabbitmq-erlang.asc] https://deb1.rabbitmq.com/rabbitmq-erlang/{{ ansible_facts['distribution'] | lower }}/{{ ansible_facts['distribution_release'] }} {{ ansible_facts['distribution_release'] }} main"
+rabbitmq_debian_erlang_repo: "deb [signed-by=/usr/share/keyrings/rabbitmq-erlang.asc] https://deb1.rabbitmq.com/rabbitmq-erlang/{{ ansible_facts['distribution'] | lower }}/{{ ansible_facts['distribution_release'] }} {{ ansible_facts['distribution_release'] }} main"
 rabbitmq_debian_erlang_repo_key: "https://github.com/rabbitmq/signing-keys/releases/download/3.0/rabbitmq-release-signing-key.asc"
 
 
