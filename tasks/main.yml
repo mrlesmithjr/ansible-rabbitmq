@@ -2,18 +2,18 @@
 # tasks file for ansible-rabbitmq
 - name: Include Debian tasks
   ansible.builtin.include_tasks: debian.yml
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Include RedHat tasks
   ansible.builtin.include_tasks: redhat.yml
   when: >
-        ansible_distribution == "CentOS" or
-        ansible_distribution == "Red Hat Enterprise Linux" or
-        ansible_distribution == "OracleLinux"
+        ansible_facts['distribution'] == "CentOS" or
+        ansible_facts['distribution'] == "Red Hat Enterprise Linux" or
+        ansible_facts['distribution'] == "OracleLinux"
 
 - name: Include Fedora tasks
   ansible.builtin.include_tasks: fedora.yml
-  when: ansible_distribution == "Fedora"
+  when: ansible_facts['distribution'] == "Fedora"
 
 - name: Manage RabbitMQ plugins
   ansible.builtin.include_tasks: rabbitmq_plugins.yml

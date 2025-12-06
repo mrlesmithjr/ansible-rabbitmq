@@ -32,10 +32,10 @@ jobs:
           # - rocky8
           # - ubuntu1604
           # - ubuntu1804
-          - ubuntu2004
+          # - ubuntu2004
           - ubuntu2204
           - ubuntu2404
-        python-version: [3.9]
+        python-version: [3.13]
     steps:
       - uses: actions/checkout@v3
         with:
