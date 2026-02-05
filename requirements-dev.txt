@@ -52,7 +52,7 @@ ruamel.yaml==0.18.16
 ruamel.yaml.clib==0.2.15
 selinux==0.3.0
 subprocess-tee==0.4.2
-urllib3==2.6.0
+urllib3==2.6.3
 virtualenv==20.35.4
 wcmatch==10.1
 yamllint==1.37.1
