@@ -40,7 +40,7 @@ pre_commit==4.5.0
 pycodestyle==2.14.0
 pycparser==2.23
 pyflakes==3.4.0
-Pygments==2.19.2
+Pygments==2.20.0
 pytokens==0.3.0
 PyYAML==6.0.3
 referencing==0.37.0
