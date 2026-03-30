@@ -4,7 +4,7 @@ cffi==2.0.0
 cryptography==46.0.6
 Jinja2==3.1.6
 MarkupSafe==3.0.3
-packaging==25.0
+packaging==26.0
 pycparser==2.23
 PyYAML==6.0.3
 resolvelib==1.2.1
