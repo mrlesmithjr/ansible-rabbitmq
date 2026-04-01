@@ -57,7 +57,10 @@ jobs:
           pip install pre-commit
       - name: Run pre-commit checks
         run: |
-          SKIP=no-commit-to-branch pre-commit run --all-files
+          SKIP=no-commit-to-branch,ansible-lint pre-commit run --all-files
+      - name: Run ansible-lint
+        run: |
+          ansible-lint
       - name: Test with molecule
         run: |
           molecule test --scenario-name ${{ matrix.molecule_distro }}
