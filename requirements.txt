@@ -41,7 +41,7 @@ click==8.3.1
     #   black
     #   molecule
     #   pip-tools
-cryptography==46.0.6
+cryptography==46.0.7
     # via
     #   ansible-core
     #   ansible-lint
