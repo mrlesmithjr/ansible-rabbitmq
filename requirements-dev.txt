@@ -57,7 +57,7 @@ pylint==4.0.5
     # via -r requirements-dev.in
 pyproject-api==1.10.0
     # via tox
-python-discovery==1.2.1
+python-discovery==1.2.2
     # via
     #   tox
     #   virtualenv
@@ -65,7 +65,7 @@ tomli-w==1.2.0
     # via tox
 tomlkit==0.14.0
     # via pylint
-tox==4.52.0
+tox==4.53.0
     # via -r requirements-dev.in
 virtualenv==21.2.0
     # via tox
