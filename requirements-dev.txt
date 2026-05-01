@@ -8,7 +8,7 @@ astroid==4.0.4
     # via pylint
 autopep8==2.3.2
     # via -r requirements-dev.in
-cachetools==7.0.5
+cachetools==7.0.6
     # via tox
 colorama==0.4.6
     # via tox
@@ -16,7 +16,7 @@ dill==0.4.1
     # via pylint
 distlib==0.4.0
     # via virtualenv
-filelock==3.25.2
+filelock==3.29.0
     # via
     #   -c requirements.txt
     #   python-discovery
@@ -30,12 +30,12 @@ mccabe==0.7.0
     # via
     #   flake8
     #   pylint
-packaging==26.0
+packaging==26.2
     # via
     #   -c requirements.txt
     #   pyproject-api
     #   tox
-platformdirs==4.9.4
+platformdirs==4.9.6
     # via
     #   -c requirements.txt
     #   pylint
@@ -57,7 +57,7 @@ pylint==4.0.5
     # via -r requirements-dev.in
 pyproject-api==1.10.0
     # via tox
-python-discovery==1.2.1
+python-discovery==1.2.2
     # via
     #   tox
     #   virtualenv
@@ -65,7 +65,7 @@ tomli-w==1.2.0
     # via tox
 tomlkit==0.14.0
     # via pylint
-tox==4.52.0
+tox==4.53.0
     # via -r requirements-dev.in
-virtualenv==21.2.0
+virtualenv==21.3.0
     # via tox
