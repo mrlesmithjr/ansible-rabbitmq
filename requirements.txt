@@ -57,7 +57,7 @@ enrich==1.2.7
     # via molecule
 filelock==3.25.2
     # via ansible-lint
-idna==3.11
+idna==3.15
     # via requests
 jinja2==3.1.6
     # via
